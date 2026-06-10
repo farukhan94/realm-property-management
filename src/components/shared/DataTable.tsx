@@ -83,7 +83,7 @@ export function DataTable<T extends { id?: string }>({
   sortable = false,
   defaultSort,
   paginated = false,
-  defaultPageSize = 25,
+  defaultPageSize = 10,
   pageSizeOptions = [10, 25, 50, 100],
   actions,
   actionsHeader = "",

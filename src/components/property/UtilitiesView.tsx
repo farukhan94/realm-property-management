@@ -17,6 +17,7 @@ import { getModuleEntity } from "@/lib/modules/entity-scope";
 import { getLocaleByEntityId } from "@/lib/locale/resolver";
 import { FULL_TABLE, fullTableSort } from "@/lib/data-table/full-table";
 import { ComboboxField } from "@/components/shared/ComboboxField";
+import { UtilityHighUsageAlerts } from "@/components/property/UtilityHighUsageAlerts";
 
 export function UtilitiesView() {
   const { entityId } = useEntity();
@@ -56,15 +57,7 @@ export function UtilitiesView() {
       description={`${locale.utilityProvider} usage vs lease cap and recovery preview.`}
       actions={<Button size="sm" onClick={() => setLogOpen(true)}>Log {locale.utilityProvider} bill</Button>}
     >
-{alerts.length > 0 && (
-        <div className="mb-4 flex flex-wrap gap-2">
-          {alerts.map((a) => (
-            <Badge key={a.id} variant="destructive">
-              High usage: {a.accountId} — <CurrencyDisplay amount={a.amount} />
-            </Badge>
-          ))}
-        </div>
-      )}
+<UtilityHighUsageAlerts alerts={alerts} accounts={accounts} />
       <Card>
         <CardHeader><CardTitle>{locale.utilityProvider} accounts</CardTitle></CardHeader>
         <CardContent>

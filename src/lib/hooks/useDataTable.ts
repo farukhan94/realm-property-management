@@ -47,7 +47,7 @@ export function useDataTable<T>({
   searchKeys = [],
   filters = [],
   defaultSort,
-  defaultPageSize = 25,
+  defaultPageSize = 10,
   getSortValue,
 }: UseDataTableOptions<T>) {
   const [search, setSearch] = useState("");

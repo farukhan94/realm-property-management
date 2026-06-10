@@ -6,6 +6,7 @@ import { getUnitStatusAtDate } from "@/lib/unit-status";
 
 export interface UnitWithBuilding extends Unit {
   buildingName: string;
+  buildingLocation: string;
 }
 
 export interface UnitDetail extends UnitWithBuilding {
@@ -15,7 +16,11 @@ export interface UnitDetail extends UnitWithBuilding {
 
 function enrichUnit(unit: Unit): UnitWithBuilding {
   const building = mockStore.buildings.find((b) => b.id === unit.buildingId);
-  return { ...unit, buildingName: building?.name ?? unit.buildingId };
+  return {
+    ...unit,
+    buildingName: building?.name ?? unit.buildingId,
+    buildingLocation: building?.location ?? "",
+  };
 }
 
 export const mockUnitsAdapter = {
