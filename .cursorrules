@@ -1,0 +1,44 @@
+# Realm — Real Estate Management / ERP
+
+This is a **Management/ERP application** for multi-building property, facility, and HOA operations. It is NOT a marketing site or simple CRUD demo.
+
+## Product context
+- Unit-centric data model: ownership, tenancy, and management periods must be queryable at any historical date.
+- Three service lines: Property Management, Facility Management, HOA (optional).
+- Multi-entity: management company, facility entity, per-HOA books.
+- Desktop-first productivity UI; fully functional on tablet and mobile.
+
+## Coding standards
+
+### TypeScript
+- Strict mode always on. No `any` except documented escape hatches.
+- Domain types live in `/types`. API shapes and DB models must not leak into UI without mapping.
+- Prefer discriminated unions for workflow states (lease status, work order status).
+
+### Architecture
+- App Router: server components by default; `"use client"` only for interactivity.
+- `/components/ui` — presentational primitives only (shadcn).
+- `/components/layout` — dashboard shell (header, sidebar, entity switcher).
+- `/lib` — pure utilities, server actions, API clients. No JSX in utility modules.
+- Feature logic colocated under route segments or `/lib/modules/{property|facility|hoa}`.
+- Financial and audit actions require explicit audit logging hooks.
+
+### UI/UX
+- Match template aesthetic: slate neutrals, blue primary, dark header bar, bordered sidebar.
+- Data-dense layouts: tables, KPI cards, monospace figures for currency.
+- Use Framer Motion (`motion`) for subtle page/section transitions — never flashy.
+- Responsive: design at `lg+` first; sidebar collapses to sheet on `< lg`; tables scroll horizontally on mobile.
+
+### Performance
+- Paginate/virtualize large tables. Avoid loading full portfolio in client state.
+- Use `loading.tsx` and Suspense boundaries per route segment.
+- Images via `next/image`. Charts lazy-loaded.
+
+### Security
+- RBAC per service line. Never trust client-side role checks alone.
+- All mutations validated with Zod (or equivalent) on the server.
+
+### Do not
+- Add marketing landing pages to this repo.
+- Mix HOA funds with management company books.
+- Skip date-range validation on ownership/tenancy/management period records.
