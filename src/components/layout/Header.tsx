@@ -14,7 +14,7 @@ export function Header() {
         </div>
         <div className="flex flex-col gap-0.5">
           <h1 className="text-base font-bold leading-tight tracking-tight md:text-lg">
-            Realm{" "}
+            Manzel{" "}
             <span className="hidden text-sm font-normal opacity-60 sm:inline">
               | Bahrain
             </span>

@@ -104,9 +104,9 @@ export const COMPANY_ID = "ent-mgmt";
 
 export const COMPANY = {
   id: COMPANY_ID,
-  name: "Realm Bahrain W.L.L.",
+  name: "Manzel Bahrain W.L.L.",
   type: "management" as const,
-  code: "RBW",
+  code: "MBW",
   country: "BH" as const,
 };
 

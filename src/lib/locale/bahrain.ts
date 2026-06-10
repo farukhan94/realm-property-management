@@ -6,7 +6,7 @@ export const BAHRAIN_LOCALE = {
   phonePrefix: "+973",
   utilityProvider: "EWA",
   company: {
-    name: "Realm Bahrain W.L.L.",
+    name: "Manzel Bahrain W.L.L.",
     crNumber: "12345-1",
     vatNumber: "200012345600003",
     address: "Seef District, Manama, Kingdom of Bahrain",

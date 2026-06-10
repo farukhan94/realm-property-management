@@ -194,7 +194,7 @@ export function MigrationMapView() {
               </span>
               <ArrowRight className="h-4 w-4" />
               <span className="rounded bg-blue-50 px-2 py-1 font-mono text-xs text-blue-700">
-                Realm ERP
+                Manzel
               </span>
             </CardContent>
           </Card>

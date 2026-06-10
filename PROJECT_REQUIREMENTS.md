@@ -1,4 +1,4 @@
-# Realm — Project Requirements
+# Manzel — Project Requirements
 
 ## Vision
 A unified Real Estate Management / ERP platform for multi-building portfolios spanning Property Management, Facility Management, and HOA/Community Association Management.

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Realm | Real Estate Management",
+  title: "Manzel | Real Estate Management",
   description:
     "Multi-building property, facility, and HOA management platform",
 };

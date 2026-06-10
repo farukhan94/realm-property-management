@@ -1,4 +1,4 @@
-# Realm — Real Estate Management / ERP
+# Manzel — Real Estate Management / ERP
 
 Multi-building property, facility, and HOA management platform. Desktop-first dashboard built with Next.js, TypeScript, and Tailwind CSS.
 

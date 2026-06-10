@@ -9,11 +9,11 @@ export const mockMigrationAdapter = {
     return `[AI Mapping Suggestion for "${target}"]
 
 Kingdom of Bahrain field mappings:
-- source.cpr → realm.tenant.cpr (10-digit)
-- source.block → realm.building.block
-- source.road → realm.building.road
-- source.ewa_account → realm.lease.ewaAccount
-- source.rent_bhd → realm.lease.monthlyRent (3 decimal places)
+- source.cpr → manzel.tenant.cpr (10-digit)
+- source.block → manzel.building.block
+- source.road → manzel.building.road
+- source.ewa_account → manzel.lease.ewaAccount
+- source.rent_bhd → manzel.lease.monthlyRent (3 decimal places)
 
 Validation: 8 conflicts in sample. Run dry-import before cutover.`;
   },

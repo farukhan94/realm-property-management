@@ -1,4 +1,4 @@
-# Realm ERP — API Contracts (Target)
+# Manzel — API Contracts (Target)
 
 Frontend services in `src/lib/api/services/` map to these REST endpoints when `NEXT_PUBLIC_USE_MOCK_API=false`.
 
