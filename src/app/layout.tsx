@@ -20,9 +20,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Manzel | Real Estate Management",
+  title: "MANZIL | Real Estate Management",
   description:
     "Multi-building property, facility, and HOA management platform",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

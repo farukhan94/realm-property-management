@@ -53,7 +53,7 @@ export function MobileNav() {
             <Link
               href={PORTAL_LINKS[role]}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-700"
+              className="flex items-center gap-3 rounded-md border border-primary/20 bg-primary/5 px-3 py-2 text-sm font-semibold text-primary"
             >
               My portal
             </Link>
@@ -74,7 +74,7 @@ export function MobileNav() {
                       className={cn(
                         "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
                         active
-                          ? "bg-blue-50 font-semibold text-blue-700"
+                          ? "bg-primary/5 font-semibold text-primary"
                           : "text-slate-600 hover:bg-slate-50"
                       )}
                     >

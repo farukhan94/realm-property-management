@@ -47,7 +47,7 @@ export function GlobalCommandMenu({ open, onOpenChange }: GlobalCommandMenuProps
   );
 
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange} title="Search Manzel" description="Jump to a page or module">
+    <CommandDialog open={open} onOpenChange={onOpenChange} title="Search MANZIL" description="Jump to a page or module">
       <CommandInput placeholder="Search pages…" />
       <CommandList>
         <CommandEmpty>No pages found.</CommandEmpty>

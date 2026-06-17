@@ -1,6 +1,7 @@
 "use client";
 
-import { CircleHelp, Hexagon } from "lucide-react";
+import Image from "next/image";
+import { CircleHelp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "./MobileNav";
 
@@ -9,12 +10,12 @@ export function Header() {
     <header className="flex shrink-0 items-center justify-between bg-slate-900 px-4 py-3 text-white md:px-6">
       <div className="flex items-center gap-3">
         <MobileNav />
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-blue-500 font-bold text-lg">
-          <Hexagon className="h-5 w-5 text-white" />
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded bg-primary">
+          <Image src="/logo.png" alt="MANZIL" width={32} height={32} className="h-8 w-8 object-cover" />
         </div>
         <div className="flex flex-col gap-0.5">
           <h1 className="text-base font-bold leading-tight tracking-tight md:text-lg">
-            Manzel{" "}
+            MANZIL{" "}
             <span className="hidden text-sm font-normal opacity-60 sm:inline">
               | Bahrain
             </span>

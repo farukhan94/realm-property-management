@@ -13,7 +13,7 @@ export function DemoControlsBar() {
       <div className="flex items-center gap-2">
         <Badge
           variant="outline"
-          className="border-blue-200 bg-blue-100 px-1.5 py-0 font-mono text-[10px] uppercase tracking-wider text-blue-700"
+          className="border-primary/30 bg-primary/10 px-1.5 py-0 font-mono text-[10px] uppercase tracking-wider text-primary"
         >
           Demo
         </Badge>

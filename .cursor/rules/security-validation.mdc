@@ -1,0 +1,11 @@
+---
+description: Security standards, RBAC, and server-side mutation validation
+alwaysApply: true
+---
+
+# Security & Validation Standards
+
+- **Role-Based Access Control (RBAC):** Enforce RBAC per service line. Never trust client-side role checks alone; always verify permissions on the server.
+- **Mutation Validation:** All mutations must be validated on the server using Zod (or equivalent).
+- **Audit Logging:** Financial and audit actions require explicit audit logging hooks.
+- **Date Validation:** Always enforce strict date-range validation on ownership, tenancy, and management period records.

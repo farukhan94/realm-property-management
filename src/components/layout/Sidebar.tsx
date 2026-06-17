@@ -28,7 +28,7 @@ export function Sidebar() {
           <Link
             href={PORTAL_LINKS[role]}
             className={cn(
-              "flex items-center gap-3 rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-700"
+              "flex items-center gap-3 rounded-md border border-primary/20 bg-primary/5 px-3 py-2 text-sm font-semibold text-primary"
             )}
           >
             My portal
@@ -49,7 +49,7 @@ export function Sidebar() {
                     className={cn(
                       "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                       active
-                        ? "bg-blue-50 font-semibold text-blue-700"
+                        ? "bg-primary/5 font-semibold text-primary"
                         : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     )}
                   >
@@ -73,7 +73,7 @@ export function Sidebar() {
             <span className="text-[10px] text-slate-500">{role}</span>
           </div>
         </div>
-        {role !== "Tenant" && role !== "Technician" && (
+        {role !== "Tenant" && role !== "Providers / Suppliers" && role !== "Property Portal" && (
           <button
             type="button"
             className="flex w-full items-center justify-center gap-1 rounded bg-slate-100 py-2 text-xs font-bold text-slate-700 transition-colors hover:bg-slate-200"

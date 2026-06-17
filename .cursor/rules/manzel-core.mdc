@@ -1,0 +1,25 @@
+---
+description: Core product context and directory architecture for Manzel ERP
+alwaysApply: true
+---
+
+# Manzel — Real Estate Management / ERP
+
+This is a **Management/ERP application** for multi-building property, facility, and HOA operations. It is NOT a marketing site or simple CRUD demo.
+
+## Product Context
+- **Unit-Centric Data Model:** Ownership, tenancy, and management periods must be queryable at any historical date.
+- **Three Service Lines:** Property Management, Facility Management, HOA (optional).
+- **Multi-Entity:** Management company, facility entity, per-HOA books.
+- **Desktop-First Productivity UI:** Fully functional on tablet and mobile.
+
+## Architecture & Folder Structure
+- **App Router:** Server components by default; `"use client"` only for interactivity.
+- `/components/ui` — Presentational primitives only (shadcn).
+- `/components/layout` — Dashboard shell (header, sidebar, entity switcher).
+- `/lib` — Pure utilities, server actions, API clients. No JSX in utility modules.
+- **Feature Logic:** Colocated under route segments or `/lib/modules/{property|facility|hoa}`.
+
+## Strict Restrictions
+- Do NOT add marketing landing pages to this repo.
+- Do NOT mix HOA funds with management company books.

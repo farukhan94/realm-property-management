@@ -1,0 +1,15 @@
+---
+description: Agent workflow — confirm before non-trivial changes
+alwaysApply: true
+---
+
+# Agent Workflow
+
+Pause and ask for user confirmation before:
+
+- Adding new pages or major features
+- Refactoring shared components (`DataTable`, `PageShell`, `FormSheet`, etc.)
+- Deviating from established UI patterns in `.cursor/rules/ui-patterns.mdc`
+- Broad architectural changes
+
+Routine bug fixes and small edits within an established pattern do not require confirmation.

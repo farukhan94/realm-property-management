@@ -11,6 +11,8 @@ import type { MaintenanceSchedule } from "@/types/maintenance";
 import type { InventoryPart } from "@/types/inventory";
 import type { ApportionmentRule, ServiceChargeInvoice } from "@/types/hoa-charge";
 import type { HoaBudgetLine, HoaProcurement } from "@/types/hoa-budget";
+import type { GuestbookEntry } from "@/types/guestbook";
+import type { Reservation } from "@/types/reservation";
 import { calcVat } from "@/lib/locale/format";
 
 function clone<T>(data: T): T {
@@ -44,6 +46,8 @@ class MockStore {
   integrations = clone(seeds.INTEGRATIONS);
   migrationSteps = clone(seeds.MIGRATION_STEPS);
   cheques = clone(seeds.CHEQUES);
+  guestbookEntries = clone(seeds.GUESTBOOK_ENTRIES);
+  reservations = clone(seeds.RESERVATIONS);
 
   addAudit(entry: Omit<AuditEntry, "id" | "timestamp">) {
     this.auditLog.unshift({
@@ -342,6 +346,69 @@ class MockStore {
       amount: cheque.amount,
     });
     return cheque;
+  }
+
+  checkInGuest(entry: Omit<GuestbookEntry, "id" | "checkOutTime" | "status">) {
+    const record: GuestbookEntry = {
+      ...entry,
+      id: `GB-${Date.now()}`,
+      checkOutTime: null,
+      status: "checked_in",
+    };
+    this.guestbookEntries.unshift(record);
+    this.addAudit({ actor: "Maintenance Manager", action: "guestbook.checkin", entityType: "guestbook", entityId: record.id, details: `${entry.visitorName} checked in` });
+    return record;
+  }
+
+  checkOutGuest(id: string) {
+    const entry = this.guestbookEntries.find((e) => e.id === id);
+    if (!entry) return null;
+    entry.status = "checked_out";
+    entry.checkOutTime = new Date().toISOString();
+    this.addAudit({ actor: "Maintenance Manager", action: "guestbook.checkout", entityType: "guestbook", entityId: id, details: `${entry.visitorName} checked out` });
+    return entry;
+  }
+
+  createReservation(input: Omit<Reservation, "id" | "status">) {
+    const reservation: Reservation = { ...input, id: `RES-${Date.now()}`, status: "pending" };
+    this.reservations.unshift(reservation);
+    this.addAudit({ actor: "Tenant", action: "reservation.created", entityType: "reservation", entityId: reservation.id, details: `${input.amenity} on ${input.date}` });
+    return reservation;
+  }
+
+  updateReservationStatus(id: string, status: Reservation["status"]) {
+    const res = this.reservations.find((r) => r.id === id);
+    if (!res) return null;
+    res.status = status;
+    this.addAudit({ actor: "Maintenance Manager", action: `reservation.${status}`, entityType: "reservation", entityId: id, details: `Reservation ${status}` });
+    return res;
+  }
+
+  getWidgetMetrics() {
+    const overdueInvoices = this.invoices.filter((i) => i.status === "overdue" || i.status === "partial");
+    const tenantIds = new Set(overdueInvoices.map((i) => i.tenantId));
+    const totalOwing = overdueInvoices.reduce((s, i) => s + i.totalAmount - (i.paidAmount ?? 0), 0);
+    const vacantUnits = this.units.filter((u) => !u.tenancyHistory.some((t) => !t.endDate));
+    const totalUnits = this.units.length;
+    const workOrders = this.workOrders;
+    const expiringLeases = this.leases.filter((l) => l.status === "active" && new Date(l.endDate) < new Date(Date.now() + 90 * 86400000));
+
+    return {
+      rentArrears: { tenantCount: tenantIds.size, totalOwing, avgDaysOverdue: 18 },
+      trustReconciliation: { status: "in_balance" as const, trustBalance: 284500, lastReconciled: "2026-06-15", pendingMonths: 0 },
+      maintenanceJobs: {
+        reported: workOrders.filter((w) => w.status === "new").length,
+        approved: workOrders.filter((w) => w.status === "assigned" || w.status === "in_progress").length,
+        assigned: workOrders.filter((w) => w.assignedTechnicianId).length,
+        inProgress: workOrders.filter((w) => w.status === "in_progress").length,
+      },
+      supplierBills: { overdueCount: 4, avgDaysOverdue: 14, totalAmount: 4650 },
+      vacancies: { vacantCount: vacantUnits.length, vacancyRate: totalUnits > 0 ? Math.round((vacantUnits.length / totalUnits) * 1000) / 10 : 0, avgDaysVacant: 32 },
+      invoiceArrears: { tenantCount: tenantIds.size, avgDaysOverdue: 12, totalAmount: totalOwing },
+      leaseRenewals: { pending: 3, expiring: expiringLeases.length, renewed: 8 },
+      inspections: { scheduled: 2, completed: 2, overdue: 2 },
+      agentFees: { totalThisMonth: 12450, lastMonth: 11800 },
+    };
   }
 }
 

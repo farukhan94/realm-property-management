@@ -7,27 +7,26 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StatusBadge } from "@/components/shared/StatusBadge";
-import { portalsService } from "@/lib/api/services/portals";
+import { workOrdersService } from "@/lib/api/services/work-orders";
+import type { WorkOrder } from "@/types/work-order";
 
 export function TechnicianPortalView() {
-  const [data, setData] = useState<Awaited<ReturnType<typeof portalsService.getForRole>>>(null);
+  const [jobs, setJobs] = useState<WorkOrder[]>([]);
 
   useEffect(() => {
-    portalsService.getForRole("Technician").then(setData);
+    workOrdersService.list().then((orders) =>
+      setJobs(orders.filter((w) => w.status !== "completed").slice(0, 12))
+    );
   }, []);
-
-  if (!data || !("jobs" in data)) {
-    return <PageShell title="Technician portal" description="Loading..."><p className="text-muted-foreground">Loading...</p></PageShell>;
-  }
 
   return (
     <PageShell
-      title="Technician portal"
+      title="Field Technician"
       description="Today's jobs — mobile-friendly view."
       actions={<Button variant="outline" size="sm" render={<Link href="/" />}>Dashboard</Button>}
     >
       <div className="grid gap-4 sm:grid-cols-2">
-        {data.jobs.map((job) => (
+        {jobs.map((job) => (
           <Card key={job.id} className="touch-manipulation">
             <CardContent className="space-y-3 p-6">
               <div className="flex items-start justify-between gap-2">

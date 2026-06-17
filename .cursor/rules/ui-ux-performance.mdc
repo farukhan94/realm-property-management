@@ -1,0 +1,18 @@
+---
+description: UI/UX guidelines, Framer Motion transitions, and performance optimizations
+globs: **/*.{tsx,css}
+alwaysApply: false
+---
+
+# UI/UX & Performance Guidelines
+
+## Visual Aesthetic
+- **Color Palette:** Slate neutrals, blue primary, dark header bar, bordered sidebar.
+- **Data-Dense Layouts:** Tables, KPI cards, monospace figures for currency.
+- **Transitions:** Use Framer Motion (`motion`) for subtle page/section transitions — never flashy.
+- **Responsive Design:** Design at `lg+` first; sidebar collapses to a sheet on `< lg`; tables must scroll horizontally on mobile.
+
+## Performance
+- **Large Tables:** Paginate or virtualize large tables. Avoid loading the full portfolio in client state.
+- **Suspense Boundaries:** Use `loading.tsx` and Suspense boundaries per route segment.
+- **Assets:** Use `next/image` for images. Lazy-load charts.

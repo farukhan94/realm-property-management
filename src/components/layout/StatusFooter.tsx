@@ -8,7 +8,7 @@ export function StatusFooter() {
       </div>
       <div className="flex gap-4">
         <span className="hidden sm:inline">UTC: 2026-06-10 14:22:11</span>
-        <span className="text-blue-500">V 0.1.0-DEV</span>
+        <span className="text-primary">V 0.1.0-DEV</span>
       </div>
     </footer>
   );

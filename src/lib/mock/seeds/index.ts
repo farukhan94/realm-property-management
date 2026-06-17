@@ -25,6 +25,8 @@ import { INTEGRATIONS } from "./integrations";
 import { FINANCIAL_METRICS } from "./financial-metrics";
 import { MIGRATION_STEPS } from "./migration";
 import { CHEQUES } from "./cheques";
+import { GUESTBOOK_ENTRIES } from "./guestbook";
+import { RESERVATIONS } from "./reservations";
 
 export {
   BUILDINGS,
@@ -54,7 +56,21 @@ export {
   FINANCIAL_METRICS,
   MIGRATION_STEPS,
   CHEQUES,
+  GUESTBOOK_ENTRIES,
+  RESERVATIONS,
 };
+
+export { SAAS_CUSTOMERS, PLATFORM_METRICS, SUBSCRIPTION_REVENUE_CHART } from "./subscriptions";
+export { SUPPLIERS, SUPPLIER_BILLS, MAINTENANCE_MANAGERS } from "./suppliers";
+export { DASHBOARD_ACTIVITIES, INSPECTION_METRICS } from "./dashboard-activities";
+export {
+  LAND_DEVELOPMENT_PROJECTS,
+  TENANT_NOTIFICATIONS,
+  TENANT_FEEDBACK,
+  TENANT_MESSAGES,
+  VACANT_LISTINGS,
+  BUILDING_OWNER_MAP,
+} from "./portal-extras";
 
 export const TICKETS = WORK_ORDERS.filter((wo) => wo.status !== "completed").map((wo) => ({
   id: wo.id,

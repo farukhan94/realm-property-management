@@ -1,0 +1,67 @@
+---
+description: Established UI patterns for list views, tables, search, forms, and dashboards
+globs: **/*.{tsx}
+alwaysApply: false
+---
+
+# UI Patterns
+
+Reuse the shared component stack below. Do not invent ad-hoc tables, search, or layout patterns.
+
+## Page Layout
+
+- Wrap feature views in `PageShell` (`title`, `description`, optional `actions` for primary CTA).
+- Nest list content in `Card` → `CardHeader` / `CardContent`.
+- Reference: `WorkOrderListView`, `LeaseListView`.
+
+## Data Tables (Standard List Pattern)
+
+Use `DataTable` from `@/components/shared/DataTable` with `FULL_TABLE` from `@/lib/data-table/full-table`:
+
+```tsx
+import { FULL_TABLE, fullTableSort } from "@/lib/data-table/full-table";
+
+<DataTable
+  {...FULL_TABLE}
+  data={rows}
+  searchPlaceholder="Search …"
+  searchKeys={["id", "title", "unitLabel"]}
+  defaultSort={fullTableSort("createdAt", "desc")}
+  columns={[
+    { key: "title", header: "Title", sortable: true, cell: (row) => row.title },
+  ]}
+/>
+```
+
+- `FULL_TABLE` enables: `searchable`, `sortable`, `paginated`, `filterable`, `defaultPageSize: 10`.
+- Columns: `key`, `header`, `cell`, plus optional `sortable`, `sortValue`, `filterable`, `filterKey`.
+- Row menus: `actions` prop → `RowActions` dropdown. Do not build per-row button clusters.
+- Filters: `DataTableFilterSheet` opens automatically when `filterable` is on.
+- Use `ComboboxField` for filter/form fields with 5+ options.
+- Do not roll custom search/sort/pagination — `useDataTable` is wired inside `DataTable`.
+
+## Display Helpers
+
+- `StatusBadge` — workflow states in table cells
+- `CurrencyDisplay` — monetary values
+- `DatePickerField` — date inputs in forms
+
+## Forms & Destructive Actions
+
+- Create/edit: `FormSheet` + `FormGrid` / `FormField`
+- Destructive actions: `ConfirmDialog` before calling the service
+
+## Dashboards
+
+- `PageShell` → `DashboardWidget` KPI grid → optional `DataTable` with `{...FULL_TABLE}`
+
+## Global Search
+
+- `GlobalCommandMenu` is for **page navigation** (Cmd+K), not in-page data search.
+- In-page data search belongs on `DataTable`.
+
+## Anti-Patterns
+
+- Raw shadcn `Table` for interactive list views
+- Custom filter/search state when `DataTable` + `FULL_TABLE` covers the use case
+- Marketing-style hero layouts or non-productivity UI

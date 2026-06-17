@@ -50,11 +50,11 @@ export const PERSONS: Person[] = [
   { id: "ten-20", name: "Deepak Krishnan", email: "d.krishnan@email.in", phone: "+973 3666 9102", role: "tenant", passportNo: "IN334455", lmraPermit: "LMRA-2025-6608", lmraExpiry: "2026-11-30", nationality: "expat" },
 
   // Technicians
-  { id: "tech-1", name: "Marcus Webb", email: "m.webb@manzel.bh", phone: "+973 3344 9001", role: "technician", lmraPermit: "LMRA-STAFF-101", nationality: "expat" },
-  { id: "tech-2", name: "Priya Sharma", email: "p.sharma@manzel.bh", phone: "+973 3777 9002", role: "technician", lmraPermit: "LMRA-STAFF-102", nationality: "expat" },
-  { id: "tech-3", name: "Ahmed Al-Fardan", nameAr: "أحمد الفردان", email: "a.fardan@manzel.bh", phone: "+973 3999 9003", role: "technician", cpr: "870412345", nationality: "bahraini" },
-  { id: "tech-4", name: "Ravi Kumar", email: "r.kumar@manzel.bh", phone: "+973 3344 9004", role: "technician", lmraPermit: "LMRA-STAFF-103", nationality: "expat" },
-  { id: "tech-5", name: "Khalid Al-Mannai", nameAr: "خالد المناعي", email: "k.mannai@manzel.bh", phone: "+973 3777 9005", role: "technician", cpr: "890615678", nationality: "bahraini" },
+  { id: "tech-1", name: "Marcus Webb", email: "m.webb@manzil.bh", phone: "+973 3344 9001", role: "technician", lmraPermit: "LMRA-STAFF-101", nationality: "expat" },
+  { id: "tech-2", name: "Priya Sharma", email: "p.sharma@manzil.bh", phone: "+973 3777 9002", role: "technician", lmraPermit: "LMRA-STAFF-102", nationality: "expat" },
+  { id: "tech-3", name: "Ahmed Al-Fardan", nameAr: "أحمد الفردان", email: "a.fardan@manzil.bh", phone: "+973 3999 9003", role: "technician", cpr: "870412345", nationality: "bahraini" },
+  { id: "tech-4", name: "Ravi Kumar", email: "r.kumar@manzil.bh", phone: "+973 3344 9004", role: "technician", lmraPermit: "LMRA-STAFF-103", nationality: "expat" },
+  { id: "tech-5", name: "Khalid Al-Mannai", nameAr: "خالد المناعي", email: "k.mannai@manzil.bh", phone: "+973 3777 9005", role: "technician", cpr: "890615678", nationality: "bahraini" },
 
   // Board members
   { id: "board-1", name: "Dr. Layla Al-Sitri", nameAr: "د. ليلى السيتري", email: "l.sitri@hoa.bh", phone: "+973 3666 0001", role: "board_member", cpr: "750201234", nationality: "bahraini" },

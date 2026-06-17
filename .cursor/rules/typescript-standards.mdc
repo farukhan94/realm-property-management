@@ -1,0 +1,20 @@
+---
+description: TypeScript coding standards, strict mode, and domain types
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript Coding Standards
+
+- **Strict Mode:** Always on. No `any` except documented escape hatches.
+- **Domain Types:** All domain types must live in `/types`. API shapes and database models must not leak into the UI without mapping.
+- **Workflow States:** Prefer discriminated unions for workflow states (e.g., lease status, work order status).
+
+## Example: Discriminated Union for Work Orders
+
+```typescript
+type WorkOrderStatus =
+  | { status: 'pending'; assignedTo?: string }
+  | { status: 'in_progress'; assignedTo: string; startedAt: Date }
+  | { status: 'completed'; assignedTo: string; completedAt: Date; resolutionSummary: string };
+```
